@@ -21,6 +21,7 @@ export async function deleteInvoice(id: string) {
   } catch (error) {
     console.error(error);
   }
+  revalidatePath("/dashboard/invoices");
 }
 
 // Use Zod to update the expected types
