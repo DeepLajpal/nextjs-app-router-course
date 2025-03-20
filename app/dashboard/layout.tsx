@@ -1,5 +1,11 @@
 import SideNav from "@/app/ui/dashboard/sidenav";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
