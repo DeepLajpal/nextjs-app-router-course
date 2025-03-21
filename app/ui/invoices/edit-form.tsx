@@ -19,7 +19,10 @@ export default function EditInvoiceForm({
   invoice: InvoiceForm;
   customers: CustomerField[];
 }) {
-  const updateInvoiceWithId = updateInvoice.bind(null, invoice?.id);
+  // Create a wrapper function that correctly orders the parameters
+  const updateInvoiceWithId = (state: State, formData: FormData) =>
+    updateInvoice(state, invoice.id, formData);
+
   const initialState: State = { message: null, errors: {} };
   const [state, formAction, pending] = useActionState(
     updateInvoiceWithId,
