@@ -6,6 +6,14 @@ import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
+export type State = {
+  errors?: {
+    customerId?: string[];
+    amount?: string[];
+    status?: string[];
+  };
+  message?: string | null;
+};
 const FormSchema = z.object({
   id: z.string(),
   date: z.string(),
@@ -67,14 +75,6 @@ export async function updateInvoice(
   revalidatePath("/dashboard/invoices");
   redirect("/dashboard/invoices");
 }
-export type State = {
-  errors?: {
-    customerId?: string[];
-    amount?: string[];
-    status?: string[];
-  };
-  message?: string | null;
-};
 export async function createInvoice(prevState: State, formData: FormData) {
   const validatedFields = CreateInvoice.safeParse({
     customerId: formData.get("customerId"),
